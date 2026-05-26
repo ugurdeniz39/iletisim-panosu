@@ -1,0 +1,24 @@
+{
+  "name": "İletişim Panosu",
+  "short_name": "AAC",
+  "description": "iPhone 12 için optimize edilmiş çevrimdışı AAC ses panosu.",
+  "lang": "tr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1318",
+  "theme_color": "#0f1318",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
