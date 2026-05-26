@@ -17,6 +17,21 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Login ekranı -->
+    <div id="login-screen" class="login-screen" role="dialog" aria-modal="true" aria-label="Giriş">
+      <div class="login-card">
+        <p class="login-title">İletişim Panosu</p>
+        <form id="login-form" novalidate>
+          <label class="login-label" for="login-user">Kullanıcı adı</label>
+          <input id="login-user" class="login-input" type="text" autocomplete="username" autocapitalize="none" />
+          <label class="login-label" for="login-pass">Şifre</label>
+          <input id="login-pass" class="login-input" type="password" autocomplete="current-password" />
+          <p id="login-error" class="login-error" aria-live="polite"></p>
+          <button class="login-submit" type="submit">Giriş</button>
+        </form>
+      </div>
+    </div>
+
     <main class="app-shell" aria-label="AAC ses panosu">
       <header class="sr-only">
         <h1>İletişim Panosu</h1>

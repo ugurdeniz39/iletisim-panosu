@@ -1,3 +1,37 @@
+/* ── Auth ── */
+(function initLogin() {
+  const CREDS = { user: "neskaraca13", pass: "12345678" };
+  const SESSION_KEY = "aac-auth";
+
+  const screen = document.getElementById("login-screen");
+  const form = document.getElementById("login-form");
+  const errorEl = document.getElementById("login-error");
+
+  function unlock() {
+    sessionStorage.setItem(SESSION_KEY, "1");
+    screen.classList.add("hidden");
+    document.getElementById("login-user").value = "";
+    document.getElementById("login-pass").value = "";
+  }
+
+  if (sessionStorage.getItem(SESSION_KEY)) {
+    screen.classList.add("hidden");
+    return;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const u = document.getElementById("login-user").value.trim();
+    const p = document.getElementById("login-pass").value;
+    if (u === CREDS.user && p === CREDS.pass) {
+      unlock();
+    } else {
+      errorEl.textContent = "Kullanıcı adı veya şifre yanlış.";
+      document.getElementById("login-pass").value = "";
+    }
+  });
+})();
+
 const SOUND_DATA_KEY = "aac-record-slot-";
 
 const soundButtons = [
@@ -91,7 +125,16 @@ function stopCurrentAudio() {
   }
 }
 
-function playSound(src, buttonEl, errorMessage) {
+function speakLabel(text) {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text.replace(/^[^\w\s]+\s*/, ""));
+  utt.lang = "tr-TR";
+  utt.rate = 0.92;
+  window.speechSynthesis.speak(utt);
+}
+
+function playSound(src, buttonEl, fallbackLabel, errorMessage) {
   stopCurrentAudio();
 
   const audio = new Audio(src);
@@ -109,13 +152,23 @@ function playSound(src, buttonEl, errorMessage) {
     if (activeAudio === audio) {
       stopCurrentAudio();
     }
-    setStatus(errorMessage || "Ses dosyası bulunamadı.");
+    if (fallbackLabel) {
+      speakLabel(fallbackLabel);
+      setStatus(`Ses dosyası yok, konuşma sentezi kullanılıyor.`);
+    } else {
+      setStatus(errorMessage || "Ses dosyası bulunamadı.");
+    }
     console.warn("Ses dosyası bulunamadı:", src);
   });
 
   audio.play().catch((err) => {
     stopCurrentAudio();
-    setStatus("Ses çalınamadı. Sessiz mod veya izinleri kontrol et.");
+    if (fallbackLabel) {
+      speakLabel(fallbackLabel);
+      setStatus("Ses dosyası yok, konuşma sentezi kullanılıyor.");
+    } else {
+      setStatus("Ses çalınamadı. Sessiz mod veya izinleri kontrol et.");
+    }
     console.warn("Ses çalınamadı:", err);
   });
 }
@@ -242,7 +295,7 @@ function renderButtons(items) {
       });
     } else {
       button.addEventListener("click", () => {
-        playSound(item.file, button, `${item.label} ses dosyası bulunamadı.`);
+        playSound(item.file, button, item.label, `${item.label} ses dosyası bulunamadı.`);
       });
     }
 

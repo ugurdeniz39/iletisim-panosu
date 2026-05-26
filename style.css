@@ -133,6 +133,97 @@ body {
   border-style: dashed;
 }
 
+/* ── Login ── */
+.login-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(120% 90% at 50% 20%, rgba(33, 41, 52, 0.55) 0%, rgba(11, 16, 23, 0.92) 100%),
+    linear-gradient(var(--overlay), var(--overlay)),
+    url("bg-hilal.jpg") center / cover no-repeat;
+  padding: 24px;
+}
+
+.login-screen.hidden {
+  display: none;
+}
+
+.login-card {
+  width: min(100%, 320px);
+  border: 1px solid var(--glass-border);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+  display: grid;
+  gap: 10px;
+}
+
+.login-title {
+  margin: 0 0 8px;
+  font: 700 20px/1 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  text-align: center;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.login-label {
+  font: 600 12px/1 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  color: rgba(248, 250, 252, 0.75);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.login-input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  font: 500 15px/1 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  padding: 0 14px;
+  outline: none;
+  transition: border-color 180ms ease;
+}
+
+.login-input:focus {
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.login-error {
+  margin: 0;
+  min-height: 16px;
+  font: 500 12px/1.3 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  color: rgba(255, 148, 148, 0.9);
+}
+
+.login-submit {
+  margin-top: 4px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.22);
+  color: var(--text);
+  font: 700 15px/1 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 160ms ease;
+}
+
+.login-submit:active {
+  background: rgba(255, 255, 255, 0.32);
+  transform: scale(0.98);
+}
+
+/* ── Helpers ── */
 .sr-only {
   position: absolute;
   width: 1px;
