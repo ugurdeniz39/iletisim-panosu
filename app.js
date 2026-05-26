@@ -270,7 +270,7 @@ async function handleRecordButton(slot, buttonEl) {
 
 function checkBackgroundImage() {
   const img = new Image();
-  img.src = "bg-hilal.jpg";
+  img.src = "bg-hilal.webp";
 
   img.onerror = () => {
     setStatus("bg-hilal.jpg bulunamadı. Dosyayı proje köküne ekle.");

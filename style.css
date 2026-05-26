@@ -30,7 +30,7 @@ body {
   background:
     radial-gradient(120% 90% at 50% 20%, rgba(33, 41, 52, 0.45) 0%, rgba(11, 16, 23, 0.82) 100%),
     linear-gradient(var(--overlay), var(--overlay)),
-    url("bg-hilal.jpg") center / cover no-repeat fixed;
+    url("bg-hilal.webp") center / cover no-repeat fixed;
   overflow: hidden;
 }
 
@@ -144,7 +144,7 @@ body {
   background:
     radial-gradient(120% 90% at 50% 20%, rgba(33, 41, 52, 0.55) 0%, rgba(11, 16, 23, 0.92) 100%),
     linear-gradient(var(--overlay), var(--overlay)),
-    url("bg-hilal.jpg") center / cover no-repeat;
+    url("bg-hilal.webp") center / cover no-repeat;
   padding: 24px;
 }
 

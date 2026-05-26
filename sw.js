@@ -9,7 +9,7 @@ const CORE_ASSETS = [
 
 const OPTIONAL_ASSETS = [
   "icons/icon.svg",
-  "bg-hilal.jpg"
+  "bg-hilal.webp"
 ];
 
 self.addEventListener("install", (event) => {
