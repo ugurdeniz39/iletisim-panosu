@@ -28,6 +28,7 @@ body {
   font-family: "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
   color: var(--text);
   background:
+    radial-gradient(120% 90% at 50% 20%, rgba(33, 41, 52, 0.45) 0%, rgba(11, 16, 23, 0.82) 100%),
     linear-gradient(var(--overlay), var(--overlay)),
     url("bg-hilal.jpg") center / cover no-repeat fixed;
   overflow: hidden;
@@ -39,14 +40,47 @@ body {
   padding-right: calc(var(--safe-right) + 16px);
   padding-bottom: calc(var(--safe-bottom) + 20px);
   padding-left: calc(var(--safe-left) + 16px);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.toolbar {
+  width: min(100%, 390px);
+  display: grid;
+  gap: 8px;
+}
+
+.tool-btn {
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 14px;
+  min-height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  font: 600 13px/1 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  backdrop-filter: blur(9px) saturate(130%);
+  -webkit-backdrop-filter: blur(9px) saturate(130%);
+  cursor: pointer;
+}
+
+.tool-btn.is-active {
+  background: rgba(233, 63, 63, 0.3);
+  border-color: rgba(255, 159, 159, 0.65);
+}
+
+.status-text {
+  margin: 0;
+  min-height: 18px;
+  font: 500 12px/1.2 "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  color: rgba(246, 249, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .button-grid {
   width: min(100%, 390px);
-  max-height: calc(100dvh - var(--safe-top) - var(--safe-bottom) - 36px);
+  max-height: calc(100dvh - var(--safe-top) - var(--safe-bottom) - 110px);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 11px;
@@ -88,6 +122,15 @@ body {
 .sound-btn.is-playing {
   border-color: rgba(255, 255, 255, 0.64);
   background: rgba(255, 255, 255, 0.32);
+}
+
+.sound-btn.is-recording {
+  border-color: rgba(255, 148, 148, 0.9);
+  background: rgba(217, 50, 50, 0.35);
+}
+
+.sound-btn.is-empty-record {
+  border-style: dashed;
 }
 
 .sr-only {

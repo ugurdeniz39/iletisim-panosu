@@ -1,17 +1,25 @@
 const CACHE_NAME = "iletisim-panosu-v1";
-const STATIC_ASSETS = [
+const CORE_ASSETS = [
   "./",
   "index.html",
   "style.css",
   "app.js",
-  "manifest.json",
+  "manifest.json"
+];
+
+const OPTIONAL_ASSETS = [
   "icons/icon.svg",
   "bg-hilal.jpg"
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await cache.addAll(CORE_ASSETS);
+      await Promise.allSettled(
+        OPTIONAL_ASSETS.map((asset) => cache.add(asset))
+      );
+    })
   );
   self.skipWaiting();
 });
